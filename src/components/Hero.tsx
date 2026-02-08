@@ -1,6 +1,6 @@
 export default function Hero() {
   return (
-    <section className="min-h-screen flex items-center justify-center px-6">
+    <section className="px-6">
       <div className="max-w-4xl text-center">
         <p className="text-accent font-mono mb-4">what up, it&apos;s</p>
         <h1 className="text-5xl md:text-7xl font-bold mb-4">nunz</h1>
@@ -14,16 +14,16 @@ export default function Hero() {
         </p>
         <div className="flex gap-4 justify-center">
           <a
-            href="#projects"
+            href="/outcomes"
             className="px-8 py-4 bg-accent hover:bg-accent-hover rounded-lg font-medium transition-colors"
           >
             View Outcomes
           </a>
           <a
-            href="/about"
+            href="/source"
             className="px-8 py-4 border border-accent text-accent hover:bg-accent/10 rounded-lg font-medium transition-colors"
           >
-            About Me
+            Source
           </a>
         </div>
       </div>

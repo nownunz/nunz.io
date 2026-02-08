@@ -3,8 +3,8 @@ import { Nunito_Sans, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
 const nunitoSans = Nunito_Sans({
-  variable: "--font-nunito-sans",
   subsets: ["latin"],
+  weight: ["400", "600", "700"],
 });
 
 const geistMono = Geist_Mono({
@@ -25,7 +25,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark" suppressHydrationWarning>
       <body
-        className={`${nunitoSans.variable} ${geistMono.variable} antialiased bg-background text-foreground`}
+        className={`${nunitoSans.className} ${geistMono.variable} antialiased bg-background text-foreground`}
       >
         {children}
       </body>

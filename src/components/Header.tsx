@@ -8,7 +8,7 @@ export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-card-border">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md">
       <nav className="max-w-6xl mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
           <a href="/" className="block">
@@ -26,26 +26,23 @@ export default function Header() {
             <a
               href="/infrastructure"
               className="text-foreground/70 hover:text-foreground transition-colors"
+              title="Blog"
             >
               Infrastructure
             </a>
             <a
-              href="/#projects"
+              href="/outcomes"
               className="text-foreground/70 hover:text-foreground transition-colors"
+              title="Case Studies"
             >
               Outcomes
             </a>
             <a
-              href="/about"
+              href="/source"
               className="text-foreground/70 hover:text-foreground transition-colors"
+              title="About Me"
             >
-              About
-            </a>
-            <a
-              href="mailto:your@email.com"
-              className="px-4 py-2 bg-accent hover:bg-accent-hover rounded-lg transition-colors"
-            >
-              Contact
+              Source
             </a>
             <ThemeToggle />
           </div>
@@ -91,28 +88,25 @@ export default function Header() {
               href="/infrastructure"
               className="text-foreground/70 hover:text-foreground transition-colors"
               onClick={() => setIsMenuOpen(false)}
+              title="Blog"
             >
               Infrastructure
             </a>
             <a
-              href="/#projects"
+              href="/outcomes"
               className="text-foreground/70 hover:text-foreground transition-colors"
               onClick={() => setIsMenuOpen(false)}
+              title="Case Studies"
             >
               Outcomes
             </a>
             <a
-              href="/about"
+              href="/source"
               className="text-foreground/70 hover:text-foreground transition-colors"
               onClick={() => setIsMenuOpen(false)}
+              title="About Me"
             >
-              About
-            </a>
-            <a
-              href="mailto:your@email.com"
-              className="px-4 py-2 bg-accent hover:bg-accent-hover rounded-lg transition-colors text-center"
-            >
-              Contact
+              Source
             </a>
           </div>
         )}

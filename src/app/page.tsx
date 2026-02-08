@@ -1,17 +1,15 @@
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
-import Projects from "@/components/Projects";
 import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
-    <>
+    <div className="h-screen flex flex-col overflow-hidden">
       <Header />
-      <main>
+      <main className="flex-1 flex items-center justify-center">
         <Hero />
-        <Projects />
       </main>
       <Footer />
-    </>
+    </div>
   );
 }
