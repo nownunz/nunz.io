@@ -3,9 +3,19 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { getAllPosts, getAllTags } from "@/lib/posts";
 
-export const metadata = {
-  title: "Infrastructure | nunz",
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Infrastructure",
   description: "Thoughts on infrastructure, systems, and technology",
+  alternates: {
+    canonical: "https://nunz.io/infrastructure",
+  },
+  openGraph: {
+    title: "Infrastructure | nunz",
+    description: "Thoughts on infrastructure, systems, and technology",
+    url: "https://nunz.io/infrastructure",
+  },
 };
 
 export default function InfrastructurePage() {

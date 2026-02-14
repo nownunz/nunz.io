@@ -15,8 +15,12 @@ export async function generateMetadata({
 }) {
   const { tag } = await params;
   return {
-    title: `${tag} | Outcomes | nunz`,
+    title: `${tag} | Outcomes`,
     description: `Case studies tagged with ${tag}`,
+    robots: {
+      index: false,
+      follow: true,
+    },
   };
 }
 

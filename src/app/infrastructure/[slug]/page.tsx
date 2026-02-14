@@ -1,8 +1,10 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { getPostBySlug, getAllPostSlugs } from "@/lib/posts";
+import { JsonLd, articleJsonLd } from "@/lib/structured-data";
 
 export async function generateStaticParams() {
   const slugs = getAllPostSlugs();
@@ -13,13 +15,33 @@ export async function generateMetadata({
   params,
 }: {
   params: Promise<{ slug: string }>;
-}) {
+}): Promise<Metadata> {
   const { slug } = await params;
   const post = await getPostBySlug(slug);
   if (!post) return { title: "Post Not Found" };
+
+  const url = `https://nunz.io/infrastructure/${slug}`;
+
   return {
-    title: `${post.title} | Infrastructure | nunz`,
+    title: post.title,
     description: post.excerpt,
+    alternates: {
+      canonical: url,
+    },
+    openGraph: {
+      title: `${post.title} | Infrastructure | nunz`,
+      description: post.excerpt,
+      url,
+      type: "article",
+      publishedTime: post.date,
+      authors: ["Nunzio Esposito"],
+      tags: post.tags,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: post.title,
+      description: post.excerpt,
+    },
   };
 }
 
@@ -37,6 +59,15 @@ export default async function PostPage({
 
   return (
     <>
+      <JsonLd
+        data={articleJsonLd({
+          title: post.title,
+          description: post.excerpt,
+          url: `https://nunz.io/infrastructure/${slug}`,
+          datePublished: post.date,
+          tags: post.tags,
+        })}
+      />
       <Header />
       <main className="pt-24 pb-16 px-6 min-h-screen">
         <article className="max-w-3xl mx-auto">

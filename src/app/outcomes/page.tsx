@@ -3,9 +3,19 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { getAllCases, getAllCaseTags } from "@/lib/cases";
 
-export const metadata = {
-  title: "Outcomes | nunz",
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Outcomes",
   description: "Case studies and project outcomes",
+  alternates: {
+    canonical: "https://nunz.io/outcomes",
+  },
+  openGraph: {
+    title: "Outcomes | nunz",
+    description: "Case studies and project outcomes",
+    url: "https://nunz.io/outcomes",
+  },
 };
 
 export default function OutcomesPage() {

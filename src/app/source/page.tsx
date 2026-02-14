@@ -1,9 +1,27 @@
+import type { Metadata } from "next";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import { JsonLd, personJsonLd } from "@/lib/structured-data";
+
+export const metadata: Metadata = {
+  title: "About Nunzio Esposito",
+  description:
+    "Chief Design Officer at Blue Yonder, leading experience strategy for the world's AI Infrastructure for Autonomous Supply Chains. 20+ years in design leadership.",
+  alternates: {
+    canonical: "https://nunz.io/source",
+  },
+  openGraph: {
+    title: "About Nunzio Esposito",
+    description:
+      "Chief Design Officer at Blue Yonder. 20+ years in design leadership, product strategy, and platform transformation.",
+    url: "https://nunz.io/source",
+  },
+};
 
 export default function SourcePage() {
   return (
     <>
+      <JsonLd data={personJsonLd()} />
       <Header />
       <main className="pt-24 pb-16 px-6 min-h-screen">
         <div className="max-w-lg mx-auto">
@@ -20,9 +38,8 @@ export default function SourcePage() {
               >
                 Blue Yonder
               </a>
-              , leading the
-              experience strategy for the company&apos;s AI-native, end-to-end
-              supply chain platform.
+              , leading the experience strategy and execution for the
+              world&apos;s only AI Infrastructure for Autonomous Supply Chains.
             </p>
             <p className="text-lg text-foreground/70 leading-loose">
               He is responsible for unifying the total experience across

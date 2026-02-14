@@ -1,8 +1,10 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { getCaseBySlug, getAllCaseSlugs } from "@/lib/cases";
+import { JsonLd, articleJsonLd } from "@/lib/structured-data";
 
 export async function generateStaticParams() {
   const slugs = getAllCaseSlugs();
@@ -13,13 +15,33 @@ export async function generateMetadata({
   params,
 }: {
   params: Promise<{ slug: string }>;
-}) {
+}): Promise<Metadata> {
   const { slug } = await params;
   const caseStudy = await getCaseBySlug(slug);
   if (!caseStudy) return { title: "Case Study Not Found" };
+
+  const url = `https://nunz.io/outcomes/${slug}`;
+
   return {
-    title: `${caseStudy.title} | Outcomes | nunz`,
+    title: caseStudy.title,
     description: caseStudy.excerpt,
+    alternates: {
+      canonical: url,
+    },
+    openGraph: {
+      title: `${caseStudy.title} | Outcomes | nunz`,
+      description: caseStudy.excerpt,
+      url,
+      type: "article",
+      publishedTime: caseStudy.date,
+      authors: ["Nunzio Esposito"],
+      tags: caseStudy.tags,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: caseStudy.title,
+      description: caseStudy.excerpt,
+    },
   };
 }
 
@@ -37,6 +59,15 @@ export default async function CasePage({
 
   return (
     <>
+      <JsonLd
+        data={articleJsonLd({
+          title: caseStudy.title,
+          description: caseStudy.excerpt,
+          url: `https://nunz.io/outcomes/${slug}`,
+          datePublished: caseStudy.date,
+          tags: caseStudy.tags,
+        })}
+      />
       <Header />
       <main className="pt-24 pb-16 px-6 min-h-screen">
         <article className="max-w-3xl mx-auto">

@@ -15,8 +15,12 @@ export async function generateMetadata({
 }) {
   const { tag } = await params;
   return {
-    title: `${tag} | Infrastructure | nunz`,
+    title: `${tag} | Infrastructure`,
     description: `Posts tagged with ${tag}`,
+    robots: {
+      index: false,
+      follow: true,
+    },
   };
 }
 
