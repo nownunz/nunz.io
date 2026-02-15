@@ -34,8 +34,8 @@ export const metadata: Metadata = {
   authors: [{ name: "Nunzio Esposito", url: siteUrl }],
   creator: "Nunzio Esposito",
   icons: {
-    icon: "/nunz.png",
-    apple: "/nunz.png",
+    icon: "/nunzio-esposito-icon.png",
+    apple: "/nunzio-esposito-icon.png",
   },
   openGraph: {
     type: "website",

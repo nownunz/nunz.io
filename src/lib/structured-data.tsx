@@ -33,7 +33,7 @@ export function personJsonLd() {
     "@type": "Person",
     name: "Nunzio Esposito",
     url: siteUrl,
-    image: `${siteUrl}/nunz.png`,
+    image: `${siteUrl}/nunzio-esposito-icon.png`,
     jobTitle: "Chief Design Officer",
     worksFor: {
       "@type": "Organization",
