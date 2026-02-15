@@ -6,7 +6,7 @@ import { JsonLd, websiteJsonLd } from "@/lib/structured-data";
 
 export const metadata: Metadata = {
   title: {
-    absolute: "Nunzio Esposito | Design Leader & CDO",
+    absolute: "Nunzio Esposito | Design Leader & CDO at Blue Yonder",
   },
   description:
     "Designing the system that shapes every interaction. Portfolio of Nunzio Esposito, Chief Design Officer at Blue Yonder.",

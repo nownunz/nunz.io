@@ -17,7 +17,7 @@ const siteUrl = "https://nunz.io";
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Nunzio Esposito | Design Leader & CDO",
+    default: "Nunzio Esposito | Design Leader & CDO at Blue Yonder",
     template: "%s | nunz",
   },
   description:
@@ -42,7 +42,7 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: siteUrl,
     siteName: "nunz",
-    title: "Nunzio Esposito | Design Leader & CDO",
+    title: "Nunzio Esposito | Design Leader & CDO at Blue Yonder",
     description:
       "Portfolio of Nunzio Esposito, Chief Design Officer at Blue Yonder. Design leadership, product strategy, and platform transformation.",
     images: [
@@ -56,7 +56,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Nunzio Esposito | Design Leader & CDO",
+    title: "Nunzio Esposito | Design Leader & CDO at Blue Yonder",
     description:
       "Portfolio of Nunzio Esposito, Chief Design Officer at Blue Yonder.",
     images: ["/nunzio-esposito-keynote.webp"],
