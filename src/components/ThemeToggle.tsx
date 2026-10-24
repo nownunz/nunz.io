@@ -1,31 +1,36 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useSyncExternalStore } from "react";
+
+const listeners = new Set<() => void>();
+
+function subscribe(listener: () => void) {
+  listeners.add(listener);
+  return () => listeners.delete(listener);
+}
+
+function getSnapshot() {
+  return localStorage.getItem("theme") !== "light";
+}
+
+function getServerSnapshot() {
+  return true;
+}
+
+function setTheme(isDark: boolean) {
+  localStorage.setItem("theme", isDark ? "dark" : "light");
+  listeners.forEach((listener) => listener());
+}
 
 export default function ThemeToggle() {
-  const [isDark, setIsDark] = useState(true);
+  const isDark = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
 
   useEffect(() => {
-    const saved = localStorage.getItem("theme");
-    if (saved === "light") {
-      setIsDark(false);
-      document.documentElement.classList.remove("dark");
-    } else {
-      setIsDark(true);
-      document.documentElement.classList.add("dark");
-    }
-  }, []);
+    document.documentElement.classList.toggle("dark", isDark);
+  }, [isDark]);
 
   const toggleTheme = () => {
-    if (isDark) {
-      document.documentElement.classList.remove("dark");
-      localStorage.setItem("theme", "light");
-      setIsDark(false);
-    } else {
-      document.documentElement.classList.add("dark");
-      localStorage.setItem("theme", "dark");
-      setIsDark(true);
-    }
+    setTheme(!isDark);
   };
 
   return (

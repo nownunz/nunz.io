@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import ThemeToggle from "./ThemeToggle";
 
 export default function Header() {
@@ -11,7 +12,7 @@ export default function Header() {
     <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md">
       <nav className="max-w-6xl mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
-          <a href="/" className="block">
+          <Link href="/" className="block">
             <Image
               src="/nunz.png"
               alt="nunz"
@@ -19,31 +20,31 @@ export default function Header() {
               height={40}
               className="rounded-lg hover:opacity-80 transition-opacity"
             />
-          </a>
+          </Link>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8">
-            <a
+            <Link
               href="/infrastructure"
               className="text-foreground/70 hover:text-foreground transition-colors"
               title="Blog"
             >
               Infrastructure
-            </a>
-            <a
+            </Link>
+            <Link
               href="/outcomes"
               className="text-foreground/70 hover:text-foreground transition-colors"
               title="Case Studies"
             >
               Outcomes
-            </a>
-            <a
+            </Link>
+            <Link
               href="/source"
               className="text-foreground/70 hover:text-foreground transition-colors"
               title="About Me"
             >
               Source
-            </a>
+            </Link>
             <div className="flex items-center gap-3">
             <a
               href="https://discord.com/users/nownunz_52546"
@@ -108,30 +109,30 @@ export default function Header() {
         {/* Mobile Navigation */}
         {isMenuOpen && (
           <div className="md:hidden mt-4 pb-4 flex flex-col gap-4">
-            <a
+            <Link
               href="/infrastructure"
               className="text-foreground/70 hover:text-foreground transition-colors"
               onClick={() => setIsMenuOpen(false)}
               title="Blog"
             >
               Infrastructure
-            </a>
-            <a
+            </Link>
+            <Link
               href="/outcomes"
               className="text-foreground/70 hover:text-foreground transition-colors"
               onClick={() => setIsMenuOpen(false)}
               title="Case Studies"
             >
               Outcomes
-            </a>
-            <a
+            </Link>
+            <Link
               href="/source"
               className="text-foreground/70 hover:text-foreground transition-colors"
               onClick={() => setIsMenuOpen(false)}
               title="About Me"
             >
               Source
-            </a>
+            </Link>
           </div>
         )}
       </nav>

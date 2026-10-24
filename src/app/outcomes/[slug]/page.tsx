@@ -97,7 +97,7 @@ export default async function CasePage({
           </header>
 
           <div
-            className="prose prose-invert prose-lg max-w-none
+            className="prose dark:prose-invert prose-lg max-w-none
               prose-headings:text-foreground prose-headings:font-bold
               prose-p:text-foreground/80
               prose-a:text-accent prose-a:no-underline hover:prose-a:underline
