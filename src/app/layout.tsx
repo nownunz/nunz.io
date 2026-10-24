@@ -5,6 +5,7 @@ import "./globals.css";
 const nunitoSans = Nunito_Sans({
   subsets: ["latin"],
   weight: ["400", "600", "700"],
+  variable: "--font-nunito",
 });
 
 const geistMono = Geist_Mono({
@@ -85,7 +86,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark" suppressHydrationWarning>
       <body
-        className={`${nunitoSans.className} ${geistMono.variable} antialiased bg-background text-foreground`}
+        className={`${nunitoSans.variable} ${nunitoSans.className} ${geistMono.variable} antialiased bg-background text-foreground`}
       >
         {children}
       </body>

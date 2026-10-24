@@ -14,22 +14,28 @@ npm run lint     # Run ESLint
 
 - **Next.js 16** with App Router
 - **React 19** with TypeScript
-- **Tailwind CSS v4** (via @tailwindcss/postcss)
-- **Markdown blog** using gray-matter + remark-html
+- **Tailwind CSS v4** (via @tailwindcss/postcss, no `tailwind.config`)
+- **Markdown** using gray-matter + remark-html
+- **`@tailwindcss/typography`** for `prose` styles on post and case-study bodies
 
 ## Architecture
 
 ### Routing Structure
 
-- `/` - Home page (Hero + Projects components)
-- `/about` - About page with skills grid
+- `/` - Home page (Hero)
+- `/source` - Bio
 - `/infrastructure` - Blog listing with tag filtering
-- `/infrastructure/[slug]` - Individual blog post (dynamic route)
+- `/infrastructure/[slug]` - Individual blog post
 - `/infrastructure/tag/[tag]` - Posts filtered by tag
+- `/outcomes` - Case-study listing with tag filtering
+- `/outcomes/[slug]` - Individual case study
+- `/outcomes/tag/[tag]` - Case studies filtered by tag
 
-### Blog System
+There is no `/about` route. Header and Footer are imported by each page; they are not in the root layout.
 
-Blog posts are markdown files in `/content/posts/` with frontmatter:
+### Content
+
+Blog posts are markdown files in `/content/posts/`. Case studies are markdown files in `/content/cases/`. The filename (without `.md`) is the slug.
 
 ```yaml
 ---
@@ -40,23 +46,31 @@ tags: ["tag1", "tag2"]
 ---
 ```
 
-The `/src/lib/posts.ts` module provides data access functions:
-- `getAllPosts()` - Returns all posts sorted by date
-- `getPostBySlug(slug)` - Single post with HTML content
-- `getPostsByTag(tag)` - Posts filtered by tag
-- `getAllTags()` - Unique tags across all posts
+`/src/lib/posts.ts` and `/src/lib/cases.ts` provide the same shape of data access:
 
-Blog routes use `generateStaticParams()` for static generation of all post and tag pages.
+- `getAllPosts()` / `getAllCases()` - Sorted newest first
+- `getPostBySlug(slug)` / `getCaseBySlug(slug)` - Single item with HTML content
+- `getPostsByTag(tag)` / `getCasesByTag(tag)` - Filtered by tag (case-insensitive)
+- `getAllTags()` / `getAllCaseTags()` - Unique tags
+- `getAllPostSlugs()` / `getAllCaseSlugs()` - Used by `generateStaticParams()`
+
+Only `.md` files are read. If either directory is missing, the loaders return an empty list and the listing pages render their empty state. Do not add placeholder posts.
+
+Listing, tag, and detail routes are statically generated. `sitemap.ts` includes static pages plus every post and case study.
 
 ### Component Organization
 
 - `/src/components/` - Reusable UI components
 - `/src/app/` - Next.js App Router pages and layouts
-- `/src/lib/` - Utility functions (currently blog data access)
+- `/src/lib/` - Blog and case-study data access, plus JSON-LD helpers
 
 ### Styling
 
-Uses Tailwind CSS v4 with CSS custom properties for theming. Theme variables are defined in `/src/app/globals.css` with `:root` and `.dark` selectors. Dark mode is default, toggled via class on `<html>` element.
+Tailwind CSS v4. Theme variables live in `/src/app/globals.css` (`:root` and `.dark`). Dark mode is the default (`className="dark"` on `<html>`), toggled by `ThemeToggle`. The `dark` variant follows that class.
+
+Body type is Nunito Sans, loaded in `layout.tsx` and exposed as `--font-nunito` (mapped to `--font-sans`). Geist Mono is `--font-mono`.
+
+Post and case-study HTML uses `prose` (and `dark:prose-invert`) from `@tailwindcss/typography`.
 
 ### Path Aliases
 

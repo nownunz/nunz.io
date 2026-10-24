@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
+import Link from "next/link";
 
 export default function Hero() {
   const [isHovering, setIsHovering] = useState(false);
@@ -51,12 +52,12 @@ export default function Hero() {
           I&apos;m a mechanic specializing in legacy to SaaS experiences that sunset past behaviors. Currently obsessed with user confidence in an autonomous solution that powers the global supply chains.
         </p>
         <div className="flex justify-center">
-          <a
+          <Link
             href="/outcomes"
             className="px-6 sm:px-8 py-3 sm:py-4 bg-accent hover:bg-accent-hover rounded-lg font-medium transition-colors"
           >
             View Outcomes
-          </a>
+          </Link>
         </div>
       </div>
     </section>
