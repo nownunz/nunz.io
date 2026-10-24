@@ -103,7 +103,9 @@ export default async function CasePage({
               prose-a:text-accent prose-a:no-underline hover:prose-a:underline
               prose-strong:text-foreground
               prose-code:text-accent prose-code:bg-card-bg prose-code:px-1 prose-code:rounded
-              prose-pre:bg-card-bg prose-pre:border prose-pre:border-card-border
+              prose-code:before:content-none prose-code:after:content-none
+              prose-pre:bg-card-bg prose-pre:border prose-pre:border-card-border prose-pre:text-foreground
+              [&_pre_code]:bg-transparent [&_pre_code]:p-0 [&_pre_code]:text-foreground
               prose-blockquote:border-accent prose-blockquote:text-foreground/70
               prose-li:text-foreground/80"
             dangerouslySetInnerHTML={{ __html: caseStudy.content || "" }}
